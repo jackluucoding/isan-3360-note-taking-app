@@ -1,5 +1,3 @@
-// The page's JavaScript. It runs in the browser.
-
 const form = document.getElementById("note-form");
 const input = document.getElementById("note-text");
 const list = document.getElementById("note-list");

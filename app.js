@@ -1,5 +1,3 @@
-// The server. Run it with: npm start
-
 const express = require("express");
 const app = express();
 
