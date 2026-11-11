@@ -1,3 +1,6 @@
 # The packages that npm install downloads. Never share this folder.
 # Anyone can rebuild it from package.json by running: npm install
 node_modules/
+
+# Your own notes. app-db.js makes this file the first time it runs.
+notes.db
