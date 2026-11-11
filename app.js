@@ -15,7 +15,7 @@ let notes = [
   {
     id: 1,
     text: "Welcome, Bobcat. Add, edit and delete your notes.",
-    time: new Date().toLocaleString(), // the date and time right now
+    time: new Date().toLocaleString(), // the date and time now
   },
 ];
 let nextId = 2; // the id that the next new note gets
@@ -45,7 +45,7 @@ app.post("/api/notes", (req, res) => {
   const note = {
     id: nextId,
     text: req.body.text,
-    time: new Date().toLocaleString(),
+    time: new Date().toLocaleString(), // the date and time now
   };
   nextId = nextId + 1;
   notes.push(note);
