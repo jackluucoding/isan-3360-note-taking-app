@@ -1,11 +1,117 @@
+/* The Texas State colors used on this page:
+   maroon #501214, gold #ac9155, charcoal #363534 and sandstone #f5f1ee */
+
 body {
   font-family: Arial, sans-serif;
-  max-width: 480px;
-  margin: 40px auto;
+  color: #363534;
+  margin: 0;
 }
 
-input,
+/* The maroon band at the top, with a gold line under it */
+header {
+  background-color: #501214;
+  color: #ffffff;
+  border-bottom: 8px solid #ac9155;
+  padding: 16px 20px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+}
+
+header p {
+  margin: 4px 0 0;
+}
+
+/* One column on a narrow screen */
+main {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  max-width: 900px;
+  margin: 24px auto;
+  padding: 0 20px;
+}
+
+/* When the window is at least 700px wide, the form sits beside the notes */
+@media (min-width: 700px) {
+  main {
+    grid-template-columns: 1fr 2fr;
+  }
+}
+
+h2 {
+  color: #501214;
+}
+
+label {
+  display: block;
+  margin-top: 12px;
+  font-weight: bold;
+}
+
+textarea,
 button {
-  padding: 8px;
+  font-family: Arial, sans-serif;
   font-size: 16px;
+  padding: 8px;
+}
+
+textarea {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* Maroon buttons with white text */
+button {
+  background-color: #501214;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  margin-top: 12px;
+  margin-right: 8px;
+}
+
+/* The server's reason, when a note has no text */
+#message {
+  color: #b00020;
+  font-weight: bold;
+}
+
+/* The last request and its status code */
+#last-request {
+  color: #555555;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+/* Each note is one card: sandstone, with a gold edge on the left */
+li {
+  background-color: #f5f1ee;
+  border-left: 8px solid #ac9155;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 12px;
+}
+
+li p {
+  margin: 0;
+}
+
+/* The date and time of the note */
+small {
+  display: block;
+  color: #555555;
+  margin-top: 8px;
+}
+
+footer {
+  color: #555555;
+  text-align: center;
+  padding: 16px 20px;
 }

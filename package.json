@@ -1,7 +1,7 @@
 {
   "name": "isan-3360-note-taking-app",
   "version": "1.0.0",
-  "description": "A small note-taking app for ISAN 3360: one page, one Express server, two routes.",
+  "description": "A small note-taking app for ISAN 3360: one page, one Express server, four routes.",
   "main": "app.js",
   "scripts": {
     "start": "node app.js"

@@ -3,21 +3,50 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>My Notes</title>
+  <title>Bobcat Notes</title>
+  <!-- This page has no tab icon, so this line tells the browser not to ask for one -->
+  <link rel="icon" href="data:,">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>My Notes</h1>
+  <header>
+    <h1>Bobcat Notes</h1>
+    <p>A small notes app for ISAN 3360 at Texas State University</p>
+  </header>
 
-  <!-- Submitting this form sends a new note to the server -->
-  <form id="note-form">
-    <label for="note-text">New note</label>
-    <input type="text" id="note-text">
-    <button>Add</button>
-  </form>
+  <main>
+    <section>
+      <h2 id="form-title">New Note</h2>
 
-  <!-- JavaScript fills this list with the notes from the server -->
-  <ul id="note-list"></ul>
+      <!-- Submitting this form sends the note to the server -->
+      <form id="note-form">
+        <label for="note-text">Note</label>
+        <textarea id="note-text" rows="4" placeholder="Example: Meet my team at Alkek Library at 3 PM"></textarea>
+
+        <button id="save">Add</button>
+        <!-- type="button" stops this button from sending the form -->
+        <button type="button" id="clear">Clear</button>
+      </form>
+
+      <!-- JavaScript puts the server's reason here when a note has no text -->
+      <p id="message"></p>
+
+      <!-- JavaScript shows the last request that changed the notes, and its status code -->
+      <p id="last-request"></p>
+    </section>
+
+    <section>
+      <h2>All Notes</h2>
+
+      <!-- JavaScript fills the count and the list with the notes from the server -->
+      <p id="count"></p>
+      <ul id="note-list"></ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>Made for ISAN 3360, Web Design and Development. Go Bobcats!</p>
+  </footer>
 
   <script src="script.js"></script>
 </body>
