@@ -1,0 +1,14 @@
+{
+  // Cloudflare reads this file when it deploys the app.
+  // You do not need it on your own computer.
+  "name": "isan-3360-note-taking-app",
+  "main": "app-cloudflare.js", // the server file that Cloudflare runs
+  "compatibility_date": "2026-11-01",
+  "compatibility_flags": ["nodejs_compat"], // lets Express, which was written for Node.js, run here
+  "assets": { "directory": "./public" }, // the page: index.html, styles.css and script.js
+  "d1_databases": [
+    // DB is the name that app-cloudflare.js uses for the database.
+    // Cloudflare makes the database, named notes-db, the first time you deploy
+    { "binding": "DB", "database_name": "notes-db" }
+  ]
+}

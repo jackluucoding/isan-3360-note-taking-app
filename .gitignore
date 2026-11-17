@@ -4,3 +4,6 @@ node_modules/
 
 # Your own notes. app-db.js makes this file the first time it runs.
 notes.db
+
+# Files that Cloudflare's tool, wrangler, makes on your own computer.
+.wrangler/
