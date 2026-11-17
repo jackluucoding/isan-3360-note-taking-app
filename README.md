@@ -60,6 +60,8 @@ The number at the end of an address, such as `2`, is the note's `id`. It tells t
 | `package.json` | read by npm | Lists what the project needs (Express) and what `npm start` runs |
 | `app.js` | on the server, in Node.js | Holds the notes in an array and answers four kinds of request |
 | `app-db.js` | on the server, in Node.js | The same four routes, with the notes in a database file, `notes.db` |
+| `app-cloudflare.js` | on Cloudflare | The same four routes, with the notes in D1, Cloudflare's database |
+| `wrangler.jsonc` | read by Cloudflare | Tells Cloudflare which file to run, where the page is, and that the app needs one database |
 | `public/index.html` | in the browser | The page: a form, a count and an empty list |
 | `public/styles.css` | in the browser | The look of the page, in the Texas State colors |
 | `public/script.js` | in the browser | Gets the notes from the server, and sends each change with `fetch` |
@@ -118,6 +120,33 @@ Try these with the database version.
 3. **Compare the two servers.** Open `app.js` and `app-db.js` side by side in VS Code, and find the lines in the table above.
 4. **Start again with no notes.** Stop the server and delete `notes.db`. The app makes a new, empty file the next time it starts.
 
+## Put the App on Cloudflare
+
+`app-cloudflare.js` is the same server, written for Cloudflare, the host from the lecture on deploying. It has the same four routes and the same four SQL statements. The notes live in **D1**, Cloudflare's database, which uses the SQL of SQLite. After you deploy, anyone with the link can open your notes app.
+
+You need the free Cloudflare account and the GitHub connection from the lecture on deploying.
+
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/jackluucoding/isan-3360-note-taking-app)
+
+1. Select the **Deploy to Cloudflare** button above. Sign in to Cloudflare if it asks.
+2. On the page **Set up your application**, choose your GitHub name under **Git account**. Keep the other boxes as they are.
+3. Select **Deploy**. Cloudflare copies this repository into your GitHub account, makes the database, `notes-db`, and builds the app. This takes about one minute, and the build log ends with `Success! Build completed.`
+4. Open your project in Cloudflare and select **Visit**. Your address ends in `workers.dev`.
+
+Add a note, then open the same address on your phone. The note is there, because it lives in a database on the web.
+
+Anyone with your link can read and change these notes, so write nothing private. To take the app offline, delete the project in Cloudflare.
+
+The two database versions differ in one way. The database is on another computer, so each route waits for it with `await`.
+
+| | `app-db.js` | `app-cloudflare.js` |
+|---|---|---|
+| Runs on | Node.js, on your computer | Cloudflare's computers |
+| Database | SQLite, in the file `notes.db` | D1, at Cloudflare |
+| The line that reads the notes | `let rows = db.all("SELECT * FROM notes");` | `let rows = await db.all("SELECT * FROM notes");` |
+| Address | `localhost:3000` | an address that ends in `workers.dev` |
+| Who can open it | only you | anyone with the link |
+
 ## If Something Goes Wrong
 
 | What you see | What to do |
@@ -131,3 +160,6 @@ Try these with the database version.
 | `node app-db.js` shows an error that names `node:sqlite` | Your Node.js is too old for the database version. Install the **LTS** version from [nodejs.org](https://nodejs.org), then open a new terminal |
 | The terminal prints `ExperimentalWarning` about SQLite | Some versions of Node.js print this line. The app still works |
 | `git pull` says that your local changes would be overwritten | You changed a file. Clone the repository again into a new folder, and run `npm install` there |
+| On Cloudflare, the **Git account** list is empty | Select **New GitHub connection**, and allow Cloudflare to use your GitHub account |
+| On Cloudflare, the project page says **No URLs enabled** right after the deploy | Reload the page, and the address appears |
+| Cloudflare does not accept the project name | Type another **Project name**. Each name can be used only once in your account |
