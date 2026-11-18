@@ -68,7 +68,7 @@ The number at the end of an address, such as `2`, is the note's `id`. It tells t
 
 The server has four routes. Together they are the four CRUD actions: create, read, update and delete.
 
-| Request | CRUD action | What the server does | Answer |
+| Request | CRUD action | What `app.js` does | Answer from `app.js` |
 |---|---|---|---|
 | `GET /api/notes` | Read | Reads the list of notes | `200` and the notes as JSON |
 | `POST /api/notes` | Create | Checks the new note, then adds it | `201` and the new note, or `400` if the note has no text |
@@ -105,7 +105,7 @@ Open <http://localhost:3000>. The page is the same page, and only the server cha
 
 The four routes do the same jobs. Each line that used the array now runs one SQL statement.
 
-The database version is also shorter. It prints no line in the terminal for each request, and it does not look for the note first, so an address with an `id` that no note has changes no rows.
+The database version is also shorter. It prints no line in the terminal for each request, and it does not look for the note first, so an address with an `id` that no note has changes no rows and still gets `200`.
 
 | Job | In `app.js`, with the array | In `app-db.js`, with the database |
 |---|---|---|
@@ -140,7 +140,7 @@ Add a note, then open the same address on your phone. The note is there, because
 
 Anyone with your link can read and change these notes, so write nothing private. To take the app offline, delete the project in Cloudflare.
 
-The two database versions differ in one way. The database is on another computer, so each route waits for it with `await`.
+The two database versions differ in two ways. The database is on another computer, so each route waits for it with `await`. `app-cloudflare.js` also looks for the note first, so an `id` that no note has gets `404`.
 
 | | `app-db.js` | `app-cloudflare.js` |
 |---|---|---|
@@ -157,7 +157,7 @@ The two database versions differ in one way. The database is on another computer
 | `node` or `npm` is "not recognized" or "command not found" | Install Node.js, then close the terminal and open a new one |
 | `Cannot find module 'express'` | Run `npm install` in this folder |
 | `address already in use :::3000` | Another server is using port 3000. Go to its terminal and press Ctrl+C |
-| The page does not load | Check that the terminal still says "Notes app is running" |
+| The page does not load | Check that the last line in the terminal still ends with "Open http://localhost:3000" |
 | You changed `app.js` and nothing is different | Stop the server with Ctrl+C and run `npm start` again. The server reads `app.js` only when it starts |
 | The terminal prints `GET /favicon.ico` | Some browsers ask for a small picture for the tab. The app has none, so you can ignore that line |
 | `node app-db.js` shows an error that names `node:sqlite` | Your Node.js is too old for the database version. Install the **LTS** version from [nodejs.org](https://nodejs.org), then open a new terminal |
