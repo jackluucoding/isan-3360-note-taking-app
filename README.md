@@ -19,10 +19,15 @@ You should see a version number, such as `v24.11.0`.
 
 ## Run the App
 
-Type these four commands in the terminal, one line at a time. You can also copy and paste them: on GitHub, each gray box of commands has a copy button in its top right corner.
+First make a **fork** (your own copy of this app in your GitHub account, which you can change).
+
+1. Sign in to GitHub on this page.
+2. Select **Fork**, near the top right of the page.
+3. Keep the boxes as they are and select **Create fork**. GitHub opens your fork, github.com/your-name/isan-3360-note-taking-app.
+4. Type these four commands in the terminal, one line at a time. Put your GitHub user name in place of `your-name`. You can also copy and paste them: on GitHub, each gray box of commands has a copy button in its top right corner.
 
 ```
-git clone https://github.com/jackluucoding/isan-3360-note-taking-app.git
+git clone https://github.com/your-name/isan-3360-note-taking-app.git
 cd isan-3360-note-taking-app
 npm install
 npm start
@@ -32,7 +37,7 @@ Then open <http://localhost:3000> in your browser. To stop the server, click the
 
 | Command | What it does |
 |---|---|
-| `git clone ...` | Downloads a copy of this repository to your computer |
+| `git clone ...` | Downloads a copy of your fork to your computer |
 | `cd isan-3360-note-taking-app` | Moves the terminal into the new folder |
 | `npm install` | Reads `package.json` and downloads Express into a `node_modules` folder |
 | `npm start` | Runs `node app.js`, which starts the server |
@@ -92,7 +97,9 @@ The server also prints one line in the terminal for each of these requests, such
 
 `app-db.js` is the same server with a database. The notes live in a file named `notes.db`, so they are still there after a restart. The database is **SQLite**, which is built into Node.js, so you install nothing new.
 
-Stop the other server first with **Ctrl+C**, because both servers use port 3000. Then type these two commands in the terminal, in the app's folder, one line at a time. You can also copy and paste them.
+1. Stop the other server first with **Ctrl+C**, because both servers use port 3000.
+2. On your fork's GitHub page, select **Sync fork**, then **Update branch**. This copies the newest files from this app into your fork. If there is no **Update branch** button, your fork is already up to date.
+3. Type these two commands in the terminal, in the app's folder, one line at a time. You can also copy and paste them.
 
 ```
 git pull
