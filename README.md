@@ -19,7 +19,7 @@ You should see a version number, such as `v24.11.0`.
 
 ## Run the App
 
-Type these four commands in the terminal, one line at a time.
+Type these four commands in the terminal, one line at a time. You can also copy and paste them: on GitHub, each gray box of commands has a copy button in its top right corner.
 
 ```
 git clone https://github.com/jackluucoding/isan-3360-note-taking-app.git
@@ -92,17 +92,20 @@ The server also prints one line in the terminal for each of these requests, such
 
 `app-db.js` is the same server with a database. The notes live in a file named `notes.db`, so they are still there after a restart. The database is **SQLite**, which is built into Node.js, so you install nothing new.
 
-If you cloned this repository before `app-db.js` was added, open a terminal in its folder and type `git pull`. Git downloads the new file.
-
-Stop the other server first with **Ctrl+C**, because both servers use port 3000. Then type:
+Stop the other server first with **Ctrl+C**, because both servers use port 3000. Then type these two commands in the terminal, in the app's folder, one line at a time. You can also copy and paste them.
 
 ```
+git pull
 node app-db.js
 ```
+
+`git pull` downloads the newest files from GitHub, and `node app-db.js` starts the database version.
 
 Open <http://localhost:3000>. The page is the same page, and only the server changed. The list starts empty, because a new database has no rows.
 
 The four routes do the same jobs. Each line that used the array now runs one SQL statement.
+
+The database version is also shorter. It prints no line in the terminal for each request, and it does not look for the note first, so an address with an `id` that no note has changes no rows.
 
 | Job | In `app.js`, with the array | In `app-db.js`, with the database |
 |---|---|---|

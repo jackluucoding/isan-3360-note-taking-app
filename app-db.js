@@ -5,12 +5,6 @@ const app = express();
 app.use(express.json()); // read the JSON that the page sends
 app.use(express.static("public")); // send the page in the public folder
 
-// Print one line in the terminal for each request for notes, such as: GET /api/notes
-app.use((req, res, next) => {
-  console.log(req.method + " " + req.url);
-  next(); // go on to the routes below
-});
-
 // The notes live in a database, the file notes.db, so they are still there after a restart
 const sqlite = new DatabaseSync("notes.db");
 sqlite.exec(
@@ -23,12 +17,6 @@ const db = {
   all: (sql, ...values) => sqlite.prepare(sql).all(...values),
   run: (sql, ...values) => sqlite.prepare(sql).run(...values),
 };
-
-// Find the note that has this id. The answer is undefined when no row has it
-function findNote(id) {
-  const rows = db.all("SELECT * FROM notes WHERE id = ?", id);
-  return rows[0];
-}
 
 // READ: send back all the notes
 app.get("/api/notes", (req, res) => {
@@ -46,12 +34,8 @@ app.post("/api/notes", (req, res) => {
   res.status(201).json({ ok: true });
 });
 
-// UPDATE: find the note, check the new text, then change the note
+// UPDATE: check the new text, then change the note that has this id
 app.put("/api/notes/:id", (req, res) => {
-  const note = findNote(req.params.id);
-  if (!note) {
-    return res.status(404).json({ error: "No note has that id." });
-  }
   if (!req.body.text) {
     return res.status(400).json({ error: "A note needs text." });
   }
@@ -59,12 +43,8 @@ app.put("/api/notes/:id", (req, res) => {
   res.json({ ok: true });
 });
 
-// DELETE: find the note, then remove it
+// DELETE: remove the note that has this id
 app.delete("/api/notes/:id", (req, res) => {
-  const note = findNote(req.params.id);
-  if (!note) {
-    return res.status(404).json({ error: "No note has that id." });
-  }
   db.run("DELETE FROM notes WHERE id = ?", req.params.id);
   res.json({ ok: true });
 });
