@@ -139,7 +139,7 @@ You need the free Cloudflare account and the GitHub connection from the lecture 
 [![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/jackluucoding/isan-3360-note-taking-app)
 
 1. Select the **Deploy to Cloudflare** button above. Sign in to Cloudflare if it asks.
-2. On the page **Set up your application**, choose your GitHub name under **Git account**. Keep the other boxes as they are.
+2. On the page **Set up your application**, choose your GitHub name under **Git account**. Type `bobcat-notes` as the **Project name**, because your fork already uses this app's name. Keep the other boxes as they are.
 3. Select **Deploy**. Cloudflare copies this repository into your GitHub account, makes the database, `notes-db`, and builds the app. This takes about one minute, and the build log ends with `Success! Build completed.`
 4. Open your project in Cloudflare and select **Visit**. Your address ends in `workers.dev`.
 
